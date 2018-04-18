@@ -1,18 +1,14 @@
 const express = require('express');
 const SocketServer = require('ws').Server;
+const ws = require('ws');
 const uuidv4 = require('uuid/v1');
-const WebSocket = require('ws');
-
-// Set the port to 3001
 const PORT = 3001;
 
-// Create a new express server
 const server = express()
-   // Make the express server serve static assets (html, javascript, css) from the /public folder
   .use(express.static('public'))
   .listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT }`));
 
-// Create the WebSockets server
+
 const wss = new SocketServer({ server });
 
 // Set up a callback that will run when a client connects to the server
@@ -25,14 +21,11 @@ wss.on('connection', (ws) => {
     let uID = uuidv4();
     let text = JSON.parse(msg.data)
     const newText = JSON.stringify({id: uID, username: text.username, content: text.content});
-    // ws.send('Message:', newText);
 
 
   wss.clients.forEach(function (client) {
-    console.log(client);
-      if (client.readyState === WebSocket.OPEN) {
+      if (client.readyState === ws.OPEN) {
         client.send(newText);
-        // console.log('BROADCAST SEND', newText)
       }
     });
   console.log(`User ${text.username} said ${text.content}`);

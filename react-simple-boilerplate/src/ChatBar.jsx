@@ -4,7 +4,7 @@ class Chatbar extends Component{
     constructor(props) {
       super(props);
       this.state = {
-        username: 'Sadie',
+        username: 'Anonymous',
         textMessage: ''
       };
 
@@ -24,13 +24,14 @@ class Chatbar extends Component{
 
     onUsername = (e) => {
       const username = e.target.value
-      this.setState({username: username});
-
-      if (e.keyCode === 13) {
+      if (username === '') {
+        this.setState({username: 'Anonymous'});
+      } else {
         this.props.onUsernameChange(username)
+        this.setState({username: username});
+      }
         console.log('SUBMIT', username)
       }
-    }
 
 
     render() {
@@ -43,9 +44,7 @@ class Chatbar extends Component{
           <input className="chatbar-username"
                   type='text' name="username"
                   placeholder="Your Name (Optional)"
-                  value={this.state.username}
-                  onChange={this.onUsername}
-                  onKeyUp={this.onUsername}/>
+                  onBlur={this.onUsername}/>
 
           <input className="chatbar-message"
                   name="textMessage"
