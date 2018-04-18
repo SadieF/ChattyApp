@@ -15,17 +15,18 @@ class App extends React.Component {
         }
 
 
-        // const oldMessages = this.state.messages;
-        // const newMessages = [...oldMessages, {id: 123, username: this.state.currentUser.name, content: msg }]
-        // this.setState({messages: newMessages})
+
 
     componentDidMount() {
       console.log("componentDidMount <App />");
       this.socket = new WebSocket("ws://localhost:3001");
 
       this.socket.onmessage = (msg) => {
-        console.log('On Message msg', msg);
-
+        let newText = JSON.parse(msg.data)
+        const oldMessages = this.state.messages;
+        const newMessages = [...oldMessages, {id: newText.id, username: newText.username, content: newText.content }]
+        this.setState({messages: newMessages})
+        console.log('EVENT THINGY', (newText.id));
       }
         console.log('Connected to Server');
 

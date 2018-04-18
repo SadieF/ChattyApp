@@ -24,13 +24,19 @@ wss.on('connection', (ws) => {
   ws.onmessage = (msg) => {
     let uID = uuidv4();
     let text = JSON.parse(msg.data)
-    const newText = {id: uID, username: text.username, content: text.content};
-    ws.send('Message:', newText);
+    const newText = JSON.stringify({id: uID, username: text.username, content: text.content});
+    // ws.send('Message:', newText);
+
+
+  wss.clients.forEach(function (client) {
+    console.log(client);
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(newText);
+        console.log('BROADCAST SEND', newText)
+      }
+    });
   console.log(`User ${text.username} said ${text.content}`);
-}
-
-
-
+  }
 
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   ws.on('close', () => console.log('Client disconnected'));
