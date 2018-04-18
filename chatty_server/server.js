@@ -20,7 +20,9 @@ wss.on('connection', (ws) => {
   ws.onmessage = (msg) => {
     let uID = uuidv4();
     let text = JSON.parse(msg.data)
-    const newText = JSON.stringify({id: uID, username: text.username, content: text.content});
+    let parsedType = text.type;
+    const newText = JSON.stringify({id: uID, type: parsedType === 'postMessage' ? 'incomingMessage': 'incomingNotification', username: text.username, content: text.content});
+    console.log('IncomingMessage', text.type)
 
 
   wss.clients.forEach(function (client) {

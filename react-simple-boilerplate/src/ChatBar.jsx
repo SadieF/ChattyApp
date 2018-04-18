@@ -26,12 +26,13 @@ class Chatbar extends Component{
       const username = e.target.value
       if (username === '') {
         this.setState({username: 'Anonymous'});
-      } else {
+
+      } else if (username !== this.state.username) {
+        this.setState({username: username, oldUser: this.state.username, type: 'postNotification'});
         this.props.onUsernameChange(username)
-        this.setState({username: username});
       }
-        console.log('SUBMIT', username)
-      }
+    }
+
 
 
     render() {

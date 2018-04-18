@@ -12,13 +12,13 @@ class MessageList extends Component{
     key = {m.id}
     username = {m.username}
     content = {m.content}
+    notification = {m.notification}
     />);
  });
 
   return (
     <div id="message-list">
     {singleMessage}
-    <Message />
     </div>
 
 
