@@ -32,7 +32,7 @@ wss.on('connection', (ws) => {
     console.log(client);
       if (client.readyState === WebSocket.OPEN) {
         client.send(newText);
-        console.log('BROADCAST SEND', newText)
+        // console.log('BROADCAST SEND', newText)
       }
     });
   console.log(`User ${text.username} said ${text.content}`);

@@ -7,15 +7,13 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-                  currentUser: {name: "Bob"}, // optional. if currentUser is not defined, it means the user is Anonymous
+                  currentUser: {}, // optional. if currentUser is not defined, it means the user is Anonymous
                   messages: []
                 }
 
             this.addMessage = this.addMessage.bind(this);
+            this.changeUsername = this.changeUsername.bind(this);
         }
-
-
-
 
     componentDidMount() {
       console.log("componentDidMount <App />");
@@ -26,7 +24,7 @@ class App extends React.Component {
         const oldMessages = this.state.messages;
         const newMessages = [...oldMessages, {id: newText.id, username: newText.username, content: newText.content }]
         this.setState({messages: newMessages})
-        console.log('EVENT THINGY', (newText.id));
+        // console.log('EVENT THINGY', (newText.id));
       }
         console.log('Connected to Server');
 
@@ -43,34 +41,20 @@ class App extends React.Component {
 
     }
 
-
-
- // sendMessageToServer(msg) {
- //      console.log('SEND MESSAGE?')
- //      var msg = {
- //        type: 'message',
- //        content: msg,
- //        username: this.state.currentUser.name
- //      }
- //     this.socket.send(JSON.stringify(msg));
- //     console.log(JSON.stringify(msg));
- //  }
-
-      addMessage(msg) {
-          console.log('SEND MESSAGE?')
+      addMessage(msg, username) {
           var msg = {
             type: 'sendMessage',
             content: msg,
-            username: this.state.currentUser.name
+            username: username
           }
 
             this.socket.send(JSON.stringify(msg));
       }
 
-
-
-
-
+      changeUsername(username) {
+        this.setState({username: username});
+        console.log('New Username', username)
+      }
 
     render() {
         console.log("Rendering <App/>");
@@ -78,7 +62,7 @@ class App extends React.Component {
         <div>
         <Message />
         <MessageList messages = {this.state.messages} />
-        <Chatbar username = {this.state.currentUser.name} onEnter = {this.addMessage}/>
+        <Chatbar username = {this.state.currentUser.name} onMessageSubmit = {this.addMessage} onUsernameChange = {this.changeUsername}/>
         </div>
 
 
