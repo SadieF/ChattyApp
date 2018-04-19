@@ -5,7 +5,6 @@ import Notification from './Notification.jsx';
 class MessageList extends Component{
   render(props) {
     console.log("Rendering <MessageList/>");
-
   const singleMessage = this.props.messages.map((m) => {
     if (m.type === 'incomingMessage') {
         return (
@@ -33,12 +32,8 @@ class MessageList extends Component{
     {singleMessage}
     <Notification />
     </div>
-
-
-
     );
-
-}
+  }
 }
 
 export default MessageList;

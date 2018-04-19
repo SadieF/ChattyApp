@@ -52,7 +52,7 @@ componentDidMount() {
   }
 
   addMessage(msg, username) {
-      const msg = {
+      var msg = {
         type: 'postMessage',
         content: msg,
         username: username,
