@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Chatbar from './Chatbar.jsx';
 import Message from './Message.jsx';
 import MessageList from './MessageList.jsx';
+import NavBar from './NavBar.jsx';
 
 class App extends React.Component {
     constructor() {
@@ -9,6 +10,7 @@ class App extends React.Component {
         this.state = {
                   currentUser: {name: 'Anonymous'}, // optional. if currentUser is not defined, it means the user is Anonymous
                   messages: [],
+                  userCount: 0
                 }
 
             this.addMessage = this.addMessage.bind(this);
@@ -24,7 +26,6 @@ class App extends React.Component {
 
         switch(newText.type) {
           case "incomingMessage":
-
               const oldMessages = this.state.messages;
               const newMessages = [...oldMessages, {id: newText.id, type: newText.type, username: newText.username, content: newText.content }]
               this.setState({messages: newMessages})
@@ -37,9 +38,12 @@ class App extends React.Component {
               console.log('NOTIFY MESSAGE', newNotifications);
 
             break;
+          case "incomingUserCount":
+              this.setState({userCount: newText.userCount});
+            break;
           default:
             // show an error in the console if the message type is unknown
-            throw new Error("Unknown event type " + data.type);
+            throw new Error("Unknown event type ", mewText.type);
           }
         // console.log('EVENT THINGY', (newText.id));
       }
@@ -86,6 +90,7 @@ class App extends React.Component {
         console.log("Rendering <App/>");
         return (
         <div>
+        <NavBar userCount = {this.state.userCount} />
         <Message />
         <MessageList messages = {this.state.messages} />
         <Chatbar username = {this.state.currentUser.name} onMessageSubmit = {this.addMessage} onUsernameChange = {this.changeUsername}/>

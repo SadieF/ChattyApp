@@ -1,4 +1,4 @@
-    @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700");
+    @import url('https://fonts.googleapis.com/css?family=Lobster|Press+Start+2P');
     @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css");
 
 
@@ -6,13 +6,13 @@
     body {
       background: white;
       color: black;
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Press Start 2P', sans-serif;
       font-size: 14px;
       margin: 70px 0;
     }
 
     .chatbar {
-      background: tomato;
+      background: #803329;
       border-top: 1px solid black;
       bottom: 0;
       display: flex;
@@ -67,9 +67,9 @@
     }
 
     .navbar {
-      background: tomato;
+      background: linear-gradient(red, black);
       border-bottom: 1px solid black;
-      height: 60px;
+      height: 90px;
       left: 0;
       padding: 0 10px;
       position: fixed;
@@ -78,7 +78,7 @@
     }
 
     .navbar-brand {
-      color: inherit;
+      color: white;
       display: block;
       float: left;
       font-weight: 700;
@@ -87,4 +87,11 @@
       line-height: 60px;
       padding: 0 10px;
       text-decoration: none;
+      margin-top: 2%;
+    }
+
+    p {
+        color: white;
+        float: right;
+        margin-top: 6%;
     }
