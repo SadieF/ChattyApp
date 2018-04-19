@@ -7,7 +7,6 @@ class MessageList extends Component{
     console.log("Rendering <MessageList/>");
 
   const singleMessage = this.props.messages.map((m) => {
-    console.log('SINGLE MESSAGE MAP', m);
     if (m.type === 'incomingMessage') {
         return (
           <Message
