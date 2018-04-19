@@ -17,7 +17,10 @@ A client-side SPA chat app clone using ReactJS. By using WebSockets the need for
 * Babel-loader
 * Babel-preset-es2015
 * Babel-preset-react
+* Babel-preset-stage-0
 * Css-loader
+* Eslint
+* Eslint-plugin-react
 * Node-sass
 * Sass-loader
 * Sockjs-client
@@ -32,7 +35,7 @@ A client-side SPA chat app clone using ReactJS. By using WebSockets the need for
 
 ## Screenshots
 
-!["Screenshot of full main page"]()
-!["Multiple user chat"]()
-!["User in room count"]()
-!["User name change"]()
+!["Screenshot of full main page"](https://github.com/SadieF/ChattyApp/blob/master/docs/FullScreenMainPage.png?raw=true)
+!["Multiple user chat"](https://github.com/SadieF/ChattyApp/blob/master/docs/MultipleUserChat.png?raw=true)
+!["User in room count"](https://github.com/SadieF/ChattyApp/blob/master/docs/UserInRoomCount.png?raw=true)
+!["User name change"](https://github.com/SadieF/ChattyApp/blob/master/docs/UserNameChange.png?raw=true)
