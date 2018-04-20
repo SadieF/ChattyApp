@@ -4,7 +4,6 @@ import Notification from './Notification.jsx';
 
 class MessageList extends Component{
   render(props) {
-    console.log("Rendering <MessageList/>");
   const singleMessage = this.props.messages.map((m) => {
     if (m.type === 'incomingMessage') {
         return (
@@ -14,6 +13,8 @@ class MessageList extends Component{
           content = {m.content}
           notification = {m.notification}
           className = 'message'
+          userColour = {m.colour}
+          image = {m.image}
           />);
        } else {
         return (
@@ -24,6 +25,7 @@ class MessageList extends Component{
           notification = {m.notification}
           className = 'notification'
         />);
+
        }
   });
 

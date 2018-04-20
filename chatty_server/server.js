@@ -25,10 +25,23 @@ const broadcastUserCount = () => {
   }))
 }
 
+function getRandomColour() {
+  var letters = '123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
 wss.on('connection', (ws) => {
   broadcastUserCount();
   console.log('Client connected');
+  colourObj = {
+    type: 'colourMessage',
+    colour: getRandomColour(),
+  }
+  ws.send(JSON.stringify(colourObj));
 
   ws.onmessage = (msg) => {
     let uID = uuidv4();
@@ -39,7 +52,9 @@ wss.on('connection', (ws) => {
       type: parsedType === 'postMessage' ? 'incomingMessage': 'incomingNotification',
       username: text.username,
       content: text.content,
-      userCount: wss.clients.size});
+      colour: text.colour,
+      image: text.image,
+    });
     wss.broadcast(newText);
   }
 
